@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Crimson Voltage - Official Site</title>
+    <style>
+        /* ---------------------- Global Reset ---------------------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ---------------------- Base Styles ---------------------- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0d0d0d; /* solid fallback */
+            background-image: url("images/blackseam.jpg");
+            background-repeat: repeat;
+            background-size: 200px 120px; /* size of repeating background pattern */
+            color: #f4f4f4;
+            line-height: 1.6;
+        }
+
+        /* ---------------------- Header ---------------------- */
+        header {
+            background-image: url("images/redbggg.jpeg");
+            background-repeat: repeat;
+            background-size: 200px 120px;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 2.5em;
+            font-weight: bold;
+            letter-spacing: 4px;
+            color: #fdd835;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Navigation Links */
+        nav {
+            margin-top: 10px;
+        }
+        nav a {
+            color: #fdd835;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: #ffffff;
+        }
+
+        /* ---------------------- Layout ---------------------- */
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        section {
+            margin-bottom: 60px;
+        }
+        h2 {
+            font-size: 2em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e52d27;
+            padding-bottom: 5px;
+            width: max-content;
+            color: #fdd835;
+        }
+        p {
+            font-size: 1.1em;
+            color: #ddd;
+        }
+
+        /* ---------------------- Band Members ---------------------- */
+        .members {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            margin-top: 40px;
+        }
+        .member-item {
+            background: #181818;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .member-item img {
+            width: 100%;
+            max-width: 320px;
+            height: 320px;
+            object-fit: cover;
+            border-bottom: 2px solid #e52d27;
+        }
+        .member-info {
+            padding: 18px 20px;
+        }
+        .member-info h3 {
+            color: #fdd835;
+            font-size: 1.3em;
+            margin-bottom: 8px;
+        }
+        .member-info p {
+            color: #ddd;
+            font-size: 1em;
+            line-height: 1.5;
+        }
+        /* Responsive layout for members */
+        @media (min-width: 768px) {
+            .members {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+            .member-item {
+                width: 30%;
+            }
+        }
+
+        /* ---------------------- Albums ---------------------- */
+        .albums {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+        }
+        .album {
+            background: #1a1a1a;
+            border-radius: 10px;
+            width: 300px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.7);
+            overflow: hidden;
+            padding-bottom: 15px;
+        }
+        .album img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+        .album-title {
+            padding: 12px;
+            font-weight: bold;
+            color: #fdd835;
+            font-size: 1.3em;
+            text-align: center;
+            border-bottom: 2px solid #e52d27;
+        }
+        .album-desc {
+            padding: 12px 15px;
+            font-size: 0.95em;
+            color: #ccc;
+            text-align: center;
+        }
+        .tracklist {
+            list-style: none;
+            padding: 0 20px;
+            margin-top: 10px;
+        }
+        .tracklist li {
+            padding: 4px 0;
+            border-bottom: 1px solid #333;
+            color: #eee;
+            font-size: 0.9em;
+        }
+
+        /* ---------------------- Gallery ---------------------- */
+        .gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-top: 24px;
+        }
+        .gallery-item {
+            width: 100%;
+            background: #181818;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 330px;
+            object-fit: cover;
+            display: block;
+        }
+        .gallery-caption {
+            padding: 18px 20px;
+            color: #fdd835;
+            font-size: 1.15em;
+            background: #252525;
+            border-top: 2px solid #e52d27;
+            text-align: left;
+            letter-spacing: 0.5px;
+        }
+        /* Responsive gallery layout */
+        @media (max-width: 700px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            .gallery-item img {
+                height: 220px;
+            }
+        }
+
+        /* ---------------------- Contact Form ---------------------- */
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        input, textarea {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            font-size: 1em;
+            background: #333;
+            color: #eee;
+            resize: none;
+        }
+        input::placeholder, textarea::placeholder {
+            color: #aaa;
+        }
+        button {
+            background: #e52d27;
+            border: none;
+            padding: 12px;
+            color: #fff;
+            font-size: 1.2em;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #b31217;
+        }
+
+        /* ---------------------- Footer ---------------------- */
+        footer {
+            text-align: center;
+            padding: 15px 0;
+            background: #111;
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ====================== HEADER ====================== -->
+<header>
+    CRIMSON VOLTAGE
+    <nav>
+        <a href="#about">About</a>
+        <a href="#music">Music</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<div class="container">
+    <!-- ====================== ABOUT SECTION ====================== -->
+    <section id="about">
+        <h2>About The Band</h2>
+        <p>Crimson Voltage brings raw rock energy with a modern edge. From underground clubs to sold-out arenas, our sound is an electrifying mix of soaring guitar solos, thunderous drums, and gritty vocals. Since 2014, we’ve been igniting stages around the globe.</p>
+        
+        <!-- Band Members List -->
+        <div class="members">
+            <div class="member-item">
+                <img src="images/member1.jpg" alt="Member 1" />
+                <div class="member-info">
+                    <h3>Alex “The Riff” Johnson – Lead Guitar</h3>
+                    <p>Master of electrifying solos and face-melting riffs. Alex shreds through the silence and lights up every stage.</p>
+                </div>
+            </div>
+            <div class="member-item">
+                <img src="images/member2.jpg" alt="Member 2" />
+                <div class="member-info">
+                    <h3>Sam “Thunder” Lee – Drums</h3>
+                    <p>From whisper-quiet rhythms to thunderous rolls, Sam’s heartbeat drives every Crimson Voltage performance.</p>
+                </div>
+            </div>
+            <div class="member-item">
+                <img src="images/member3.jpg" alt="Member 3" />
+                <div class="member-info">
+                    <h3>Maya “Echo” Rivers – Vocals</h3>
+                    <p>A voice that cuts through the noise — Maya’s gritty highs and soulful lows define the Crimson Voltage sound.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====================== MUSIC SECTION ====================== -->
+    <section id="music">
+        <h2>Our Albums</h2>
+        <div class="albums">
+            <!-- Album 1 -->
+            <div class="album">
+                <a href="https://open.spotify.com/album/2Y9IRtehByVkegoD7TcLfi?si=b13umJRaQZec_sASPwKwZw" target="_blank">
+                    <img src="images/album1.jpg" alt="Voltage Rising" />
+                </a>
+                <div class="album-title">Voltage Rising</div>
+                <p class="album-desc">The debut powerhouse album that set the stage for Crimson Voltage’s electrifying journey. Packed with raw riffs and electrified vocals.</p>
+                <ul class="tracklist">
+                    <li>Intro: Sparks in the Dark</li>
+                    <li>Voltage Rising</li>
+                    <li>Neon Storm</li>
+                    <li>Heartwire</li>
+                    <li>Night Surge</li>
+                    <li>Final Shock</li>
+                </ul>
+            </div>
+
+            <!-- Album 2 -->
+            <div class="album">
+                <a href="https://open.spotify.com/album/28yHV3Gdg30AiB8h8em1eW?si=76EOhJzrTPa_ralWyZItCw" target="_blank">
+                    <img src="images/album2.jpg" alt="Red Storm" />
+                </a>
+                <div class="album-title">Red Storm</div>
+                <p class="album-desc">A fierce follow-up with thunderous percussion and soaring solos. This record took us to the top of the rock charts.</p>
+                <ul class="tracklist">
+                    <li>Red Storm</li>
+                    <li>Overdrive</li>
+                    <li>Steel & Fire</li>
+                    <li>Heatwave</li>
+                    <li>Fury Road</li>
+                    <li>Stormbreaker</li>
+                </ul>
+            </div>
+
+            <!-- Album 3 -->
+            <div class="album">
+                 <a href="https://open.spotify.com/track/4PTG3Z6ehGkBFwjybzWkR8?si=d408ff6ddef440f0" target="_blank">
+                    <img src="images/album3.jpg" alt="Amped Souls" />
+                 </a>
+                <div class="album-title">Amped Souls</div>
+                <p class="album-desc">The soul-charged anthems that unite fans worldwide. From tender ballads to roaring stadium rockers.</p>
+                <ul class="tracklist">
+                    <li>Ignite</li>
+                    <li>High Voltage Love</li>
+                    <li>Echoes in the Amp</li>
+                    <li>Wild Sparks</li>
+                    <li>Powerline Dreams</li>
+                    <li>Last Encore</li>
+                </ul>
+            </div>
+
+            <!-- Album 4 -->
+            <div class="album">
+                 <a href="https://open.spotify.com/album/2HwRKkEp7jXbxXwcGyZYHK?si=DAVCcybFROmwaiRHX8tYyw" target="_blank">
+                    <img src="images/album4.jpg" alt="Thunder Reign" />
+                </a>
+                <div class="album-title">Thunder Reign</div>
+                <p class="album-desc">A bold return with pounding rhythms and electrifying anthems that dominate the airwaves. Thunder Reign cements Crimson Voltage’s reputation as rock royalty.</p>
+                <ul class="tracklist">
+                    <li>Thunder Reign</li>
+                    <li>Lightning Strike</li>
+                    <li>Fire and Ice</li>
+                    <li>Breaking Barriers</li>
+                    <li>Sonic Boom</li>
+                    <li>Last Stand</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====================== GALLERY SECTION ====================== -->
+    <section id="gallery">
+        <h2>Gallery</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="images/gallery1.jpg" alt="Live at XYZ Arena" />
+                <div class="gallery-caption">Live at XYZ Arena, Audience: 2,000 – Our biggest pyrotechnics ever!</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/gallery2.jpg" alt="Festival 2024" />
+                <div class="gallery-caption">Festival 2024: Headlining with thunderous riffs for a sea of 5,000 rock lovers.</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/gallery3.jpg" alt="Club Night" />
+                <div class="gallery-caption">Intimate club gig, 300 diehard fans, sweat, amps, and pure energy.</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/gallery4.jpg" alt="Biggest Show" />
+                <div class="gallery-caption">Our biggest show ever — 10,000 screaming fans, lights blazing, amps at max. The night we shook the city and made history, Crimson Voltage style.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====================== CONTACT SECTION ====================== -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form>
+            <input type="text" placeholder="Your Name" required />
+            <input type="email" placeholder="Your Email" required />
+            <textarea rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+</div>
+
+<!-- ====================== FOOTER ====================== -->
+<footer>
+    &copy; 2025 Crimson Voltage. All rights reserved.
+</footer>
+</body>
+</html>
