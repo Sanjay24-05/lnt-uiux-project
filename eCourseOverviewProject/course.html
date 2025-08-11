@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Single Course Overview - E-Learning Hub</title>
+  <style>
+    /* ---------- Global Reset & Defaults ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* ---------- Main Page Container ---------- */
+    .container {
+      width: 100%;
+      padding: 20px;
+      background: #fff;
+    }
+
+    /* ---------- Course Header Section ---------- */
+    .top-course-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 15px;
+      margin-bottom: 35px;
+    }
+    .top-course-thumbnail {
+      width: 360px;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+    .top-course-info {
+      flex-grow: 1;
+    }
+    .top-course-title {
+      font-size: 1.8em;
+      color: #004d99;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .top-course-meta {
+      font-size: 0.9em;
+      color: #555;
+      margin-bottom: 10px;
+    }
+    .top-course-nav {
+      display: flex;
+      gap: 15px;
+      font-size: 0.9em;
+      flex-wrap: wrap;
+    }
+    .top-course-nav a {
+      color: #004d99;
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 5px;
+      border: 1px solid transparent;
+      transition: background-color 0.25s ease, border-color 0.25s ease;
+    }
+    .top-course-nav a:hover {
+      background-color: #004d99;
+      color: white;
+      border-color: #004d99;
+    }
+
+    /* ---------- Embedded Video Section ---------- */
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+      border-radius: 12px;
+    }
+
+    /* ---------- Course Description Text ---------- */
+    .description {
+      font-size: 1.1em;
+      color: #444;
+      margin-bottom: 40px;
+      max-width: 100%;
+    }
+
+    /* ---------- Course Roadmap Section ---------- */
+    #course-roadmap {
+      margin-bottom: 40px;
+    }
+    #course-roadmap h2 {
+      color: #004d99;
+      font-size: 1.8em;
+      margin-bottom: 20px;
+    }
+    #course-roadmap ol {
+      color: #555;
+      font-size: 1em;
+      line-height: 1.6;
+      padding-left: 20px;
+    }
+    #course-roadmap li {
+      margin-bottom: 10px;
+    }
+
+    /* ---------- Learning Outcomes Section ---------- */
+    #learning-outcomes {
+      margin-bottom: 40px;
+    }
+    #learning-outcomes h2 {
+      color: #004d99;
+      margin-bottom: 20px;
+      font-size: 1.8em;
+    }
+    #learning-outcomes ul {
+      list-style-type: disc;
+      margin-left: 20px;
+      color: #555;
+      font-size: 1em;
+      line-height: 1.5;
+    }
+
+    /* ---------- Testimonials Section ---------- */
+    #testimonials {
+      width: 100%;
+      margin-bottom: 50px;
+      padding: 40px 20px;
+      background: #e6f0ff;
+    }
+    #testimonials h2 {
+      color: #004d99;
+      font-size: 1.8em;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+    .testimonial {
+      background: #fff;
+      padding: 20px 25px;
+      border-radius: 10px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+      margin: 0 auto 20px auto;
+      font-style: italic;
+      color: #333;
+      line-height: 1.4;
+      max-width: 900px;
+    }
+    .testimonial-author {
+      margin-top: 12px;
+      font-weight: bold;
+      color: #004d99;
+      font-style: normal;
+      text-align: right;
+    }
+
+    /* ---------- Call-To-Action Button ---------- */
+    .cta-section {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .cta-button {
+      background: #004d99;
+      color: white;
+      padding: 15px 40px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 77, 153, 0.4);
+    }
+    .cta-button:hover {
+      background: #003366;
+    }
+
+    /* ---------- Contact Form Section ---------- */
+    #contact {
+      text-align: center;
+      margin-bottom: 40px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #contact h2 {
+      color: #004d99;
+      margin-bottom: 25px;
+      font-size: 1.8em;
+    }
+    #contact p {
+      margin-bottom: 15px;
+      font-size: 1em;
+      color: #555;
+    }
+    form {
+      background: #fff;
+      padding: 20px 25px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+      text-align: left;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #444;
+    }
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 18px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1em;
+      color: #333;
+      resize: vertical;
+      font-family: inherit;
+    }
+    textarea {
+      min-height: 100px;
+    }
+    button[type="submit"] {
+      background: #004d99;
+      color: #fff;
+      border: none;
+      padding: 14px 30px;
+      font-size: 1.1em;
+      border-radius: 7px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background 0.3s ease;
+    }
+    button[type="submit"]:hover {
+      background: #003366;
+    }
+
+    /* ---------- Responsive Styles ---------- */
+    @media (max-width: 600px) {
+      .top-course-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .top-course-thumbnail {
+        width: 100%;
+        height: auto;
+      }
+      .top-course-nav {
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Course Header -->
+  <div class="top-course-header">
+    <img src="images/thumbnail.jpg" alt="Course Thumbnail" class="top-course-thumbnail" />
+    <div class="top-course-info">
+      <div class="top-course-title">Introduction to Web Development</div>
+      <div class="top-course-meta">Provided by: E-Learning Hub | Duration: 6 weeks | Level: Beginner</div>
+      <nav class="top-course-nav">
+        <a href="#course-overview">Course Overview</a>
+        <a href="#course-roadmap">Course Roadmap</a>
+        <a href="#learning-outcomes">Learning Outcomes</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Course Overview Section -->
+  <section id="course-overview">
+    <div class="video-wrapper">
+      <iframe 
+        src="https://www.youtube.com/embed/dD2EISBDjWM" 
+        title="Introduction to Web Development Video" 
+        allowfullscreen 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+      </iframe>
+    </div>
+    <div class="description">
+      <p>
+        This comprehensive course will guide you through the fundamentals of web development using HTML, CSS, and JavaScript. 
+        Build responsive websites and gain the confidence to start your journey as a web developer with practical projects and expert guidance.
+      </p>
+    </div>
+  </section>
+
+  <!-- Roadmap Section -->
+  <section id="course-roadmap">
+    <h2>Course Roadmap</h2>
+    <ol>
+      <li><strong>Week 1:</strong> Introduction to HTML - Understanding page structure and basic tags.</li>
+      <li><strong>Week 2:</strong> Styling with CSS - Applying colors, fonts, box model, and layouts.</li>
+      <li><strong>Week 3:</strong> Advanced CSS - Flexbox, Grid, and responsive design principles.</li>
+      <li><strong>Week 4:</strong> JavaScript Basics - Variables, functions, events, and DOM manipulation.</li>
+      <li><strong>Week 5:</strong> Interactive Webpages - Event handling and basic animations.</li>
+      <li><strong>Week 6:</strong> Final Project and Deployment - Building a full responsive website and publishing online.</li>
+    </ol>
+  </section>
+
+  <!-- Learning Outcomes Section -->
+  <section id="learning-outcomes">
+    <h2>What You Will Learn</h2>
+    <ul>
+      <li>Understand the structure and syntax of HTML5.</li>
+      <li>Style modern websites with CSS3 including Flexbox and Grid layouts.</li>
+      <li>Add interactivity to web pages with JavaScript basics and DOM manipulation.</li>
+      <li>Build responsive and accessible web designs for multiple devices.</li>
+      <li>Deploy your projects for real-world use on the web.</li>
+    </ul>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials">
+    <h2>What Our Students Say</h2>
+    <div class="testimonial">
+      "The web development course helped me build real projects and confidently start my career as a developer."
+      <div class="testimonial-author">- Sarah M.</div>
+    </div>
+    <div class="testimonial">
+      "I loved how the course broke down complex concepts into easy-to-understand steps and practical examples."
+      <div class="testimonial-author">- James K.</div>
+    </div>
+  </section>
+
+  <!-- Call-To-Action Section -->
+  <section class="cta-section">
+    <button class="cta-button" type="button" onclick="alert('Enrollment feature coming soon!')">Enroll Now</button>
+    <p style="margin-top: 10px; font-size: 0.9em; color: #555;">
+      Earn a certificate upon successful completion.
+    </p>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Questions? Reach out at <a href="mailto:info@elearninghub.com">info@elearninghub.com</a></p>
+    <form action="#" method="post">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" required placeholder="Enter your name" />
+      <label for="email">Your Email</label>
+      <input type="email" id="email" name="email" required placeholder="Enter your email" />
+      <label for="message">Your Query</label>
+      <textarea id="message" name="message" required placeholder="Type your query here..."></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+</div>
+
+</body>
+</html>
